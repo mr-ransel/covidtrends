@@ -607,7 +607,11 @@ let app = new Vue({
 
     isHidden: true,
 
-    selectedCountries: ['Australia', 'Canada', 'China', 'France', 'Germany', 'Iran', 'Italy', 'Japan', 'South Korea', 'Spain', 'Switzerland', 'US', 'United Kingdom', 'India', 'Pakistan'],
+    selectedCountries: ['AUS__', 'CAN__', 'CHN__', 'FRA__', 'DEU__', 'Iran', 'ITA__', 'JPN__', 'KOR__', 'ESP__', 'Switzerland', 'USA__', 'GBR__', 'IND__', 'PAK__',
+      'USA_CA_', 'USA_NY_', 'USA_WA_', 'USA_TX_', 'USA_FL_',
+      'USA_CA_Alameda County', 'USA_CA_Contra Costa County', 'USA_CA_Marin County', 'USA_CA_Napa County', 'USA__ County', 'USA_CA_San Francisco County', 'USA_CA_San Mateo County', 'USA_CA_Santa Clara County', 'USA_CA_Solano County', 'USA_CA_Sonoma County',
+      'USA_TX_Nueces County'
+    ],
 
     graphMounted: false,
 
