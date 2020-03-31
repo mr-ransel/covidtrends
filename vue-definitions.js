@@ -403,7 +403,7 @@ let app = new Vue({
         'Korea, South': 'South Korea'
       };
 
-      let countries = data.map(e => e["county"]+"_"+e["state"]+"_"+e["country"]);
+      let countries = data.map(e => e["country"]+"_"+e["state"]+"_"+e["county"]);
       countries = this.removeRepeats(countries);
 
       let dates = Object.keys(data[0]).slice(4);
@@ -413,7 +413,7 @@ let app = new Vue({
 
       let myData = [];
       for (let country of countries){
-        let countryData = data.filter(function(e) {return (e["county"] == country.split("_")[0]) && (e["state"] == country.split("_")[1]) && (e["country"] == country.split("_")[2]) });
+        let countryData = data.filter(function(e) {return (e["country"] == country.split("_")[0]) && (e["state"] == country.split("_")[1]) && (e["county"] == country.split("_")[2]) });
         let arr = [];
         
         if (countryData.length < 1) {
