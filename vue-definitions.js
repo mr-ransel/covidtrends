@@ -384,7 +384,7 @@ let app = new Vue({
     pullData(selectedData) {
 
       if (selectedData == 'Confirmed Cases') {
-       Plotly.d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv", this.processData);
+       Plotly.d3.csv("https://coronadatascraper.com/timeseries-jhu.csv", this.processData);
       } else if (selectedData == 'Reported Deaths') {
        Plotly.d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv", this.processData);
       }
@@ -403,7 +403,7 @@ let app = new Vue({
         'Korea, South': 'South Korea'
       };
 
-      let countries = data.map(e => e["Country/Region"]);
+      let countries = data.map(e => e["county"]+"_"+e["state"]+"_"+e["country"]);
       countries = this.removeRepeats(countries);
 
       let dates = Object.keys(data[0]).slice(4);
@@ -413,8 +413,12 @@ let app = new Vue({
 
       let myData = [];
       for (let country of countries){
-        let countryData = data.filter(e => e["Country/Region"] == country);
+        let countryData = data.filter(function(e) {return (e["county"] == country.split("_")[0]) && (e["state"] == country.split("_")[1]) && (e["country"] == country.split("_")[2]) });
         let arr = [];
+        
+        if (countryData.length < 1) {
+          continue
+        }
 
         for (let date of dates) {
           let sum = countryData.map(e => parseInt(e[date]) || 0).reduce((a,b) => a+b);
